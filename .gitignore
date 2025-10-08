@@ -1,0 +1,7 @@
+raycast/
+tmux/.tmux/plugins/tmux
+tmux/.tmux/plugins/tmux-sensible
+tmux/.tmux/plugins/tmuxifier
+tmux/.tmux/plugins/vim-tmux-navigator
+.DS_Store
+tmux/.tmux/plugins
