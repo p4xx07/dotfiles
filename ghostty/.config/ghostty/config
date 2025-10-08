@@ -1,0 +1,27 @@
+##background = ffffff
+
+theme = "catppuccin-macchiato"
+#theme = "catppuccin-frappe"
+#theme = "catppuccin-mocha"
+#theme = "catppuccin-latte"
+
+font-family = "ComicShannsMono Nerd Font"
+window-title-font-family = "ComicShannsMono Nerd Font"
+font-size = 18
+
+background-opacity = 0.5
+background-blur = 20
+window-inherit-font-size = true
+#fullscreen = true
+#maximize = true
+
+window-inherit-working-directory = true
+
+
+keybind = global:ctrl+t=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-animation-duration = 0.1
+
+macos-non-native-fullscreen = true
+
+copy-on-select = true
