@@ -89,12 +89,14 @@ map('t', "<Esc>", "<C-\\><C-N>")
 -- plugins
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/folke/snacks.nvim" },
 
-	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
+
+
+	{ src = "https://github.com/nvim-mini/mini.hipatterns" },
 	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/preservim/nerdtree" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/ThePrimeagen/harpoon", version="harpoon2" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -106,26 +108,48 @@ vim.pack.add({
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/smithbm2316/centerpad.nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- depends on mini, treesitter
+	{ src = "https://github.com/NickvanDyke/opencode.nvim" },
 })
 
---nvim-colorizer
-require "colorizer".setup()
-local red = '#FF0000' 
-local green = "#00FF00"
-local blue = '#0000FF'
+--mini.hipatterns
+local hipatterns = require('mini.hipatterns')
+hipatterns.setup({
+  highlighters = {
+    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+    fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+    hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+    todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+    note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+
+    -- Highlight hex color strings (`#rrggbb`) using that color
+    hex_color = hipatterns.gen_highlighter.hex_color(),
+	-- #FF0000
+	-- #00FF00
+	-- #0000FF
+  },
+})
 
 -- oil
 require "mason".setup()
 
--- todo-comments
+-- snacks and open code
+require("snacks").setup({
+	input = {},
+	picker = {},
+})
 
--- TODO:
--- PERF:
--- HACK:
--- NOTE:
--- FIX:
--- WARN:
-require "todo-comments".setup()
+vim.g.opencode_opts = {}
+vim.opt.autoread = true
+
+map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask about this" })
+map({ "n", "x" }, "<leader>o+", function() require("opencode").prompt("@this") end, { desc = "Add this" })
+map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Select prompt" })
+map("n", "<leader>ot", function() require("opencode").toggle() end, { desc = "Toggle embedded" })
+map("n", "<leader>on", function() require("opencode").command("session_new") end, { desc = "New session" })
+map("n", "<leader>oi", function() require("opencode").command("session_interrupt") end, { desc = "Interrupt session" })
+map("n", "<leader>oA", function() require("opencode").command("agent_cycle") end, { desc = "Cycle selected agent" })
+map("n", "<S-C-u>", function() require("opencode").command("messages_half_page_up") end, { desc = "Messages half page up" })
+map("n", "<S-C-d>", function() require("opencode").command("messages_half_page_down") end, { desc = "Messages half page down" })
 
 -- telescope
 --
@@ -169,7 +193,7 @@ map("n", "<C-S-N>", function() harpoon:list():next() end)
 
 -- oil
 require "oil".setup()
-map('n', '<leader>o', ":Oil<CR>")
+map('n', '<leader>oi', ":Oil<CR>")
 
 -- centerpad
 map('n', '<leader>cp', ":Centerpad<CR>")
@@ -180,13 +204,13 @@ vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
 
 --snippets
-require "luasnip".setup({ enable_autosnippets = true })
-require "luasnip.loaders.from_lua".load({ paths = "~/.config/nvim/snippets/" })
+--require "luasnip".setup({ enable_autosnippets = true })
+--require "luasnip.loaders.from_lua".load({ paths = "~/.config/nvim/snippets/" })
 
-local ls = require("luasnip")
-map({ "i" }, "<C-e>", function() ls.expand() end, { silent = true })
-map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
-map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
+-- local ls = require("luasnip")
+--map({ "i" }, "<C-e>", function() ls.expand() end, { silent = true })
+--map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
+--map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
 -- NERDTree
 map('n', '<leader>nt', ":NERDTreeToggle<CR>")
