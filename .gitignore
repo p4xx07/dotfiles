@@ -5,3 +5,4 @@ tmux/.tmux/plugins/tmuxifier
 tmux/.tmux/plugins/vim-tmux-navigator
 .DS_Store
 tmux/.tmux/plugins
+nvim/.config/nvim/nvim-pack-lock.json

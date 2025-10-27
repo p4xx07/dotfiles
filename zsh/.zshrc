@@ -8,6 +8,12 @@ alias vim='nvim'
 alias v='nvim'
 export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 
+bindkey -v
+# allow vv to edit the command line (standard behaviour)
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'vv' edit-command-line
+
 #weather
 alias weather='curl wttr.in'
 

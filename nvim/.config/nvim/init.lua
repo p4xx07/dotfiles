@@ -1,6 +1,6 @@
 vim.cmd([[set mouse=a]])
 vim.cmd([[set noswapfile]])
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
+vim.cmd [[set completeopt+=menuone,noselect,noinsert,popup,preview]]
 vim.o.tabstop = 2
 vim.o.cursorcolumn = false
 vim.o.ignorecase = true
@@ -88,28 +88,100 @@ map('t', "<Esc>", "<C-\\><C-N>")
 
 -- plugins
 vim.pack.add({
+  -- dependencies
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim"},
 	{ src = "https://github.com/folke/snacks.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 
-
-
+  -- packages
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim"},
+	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 	{ src = "https://github.com/nvim-mini/mini.hipatterns" },
 	{ src = "https://github.com/vague2k/vague.nvim" },
-	{ src = "https://github.com/preservim/nerdtree" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/ThePrimeagen/harpoon", version="harpoon2" },
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/NvChad/showkeys" },
+	{ src = "https://github.com/nvzone/showkeys", cmd = "ShowkeysToggle" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/smithbm2316/centerpad.nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- depends on mini, treesitter
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+
+	-- Completion engine
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+	{ src = "https://github.com/hrsh7th/cmp-buffer" },
+	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/saadparwaiz1/cmp_luasnip" },
+
+	-- (Optional) nice extras for quality of life
+	{ src = "https://github.com/folke/trouble.nvim" },     -- diagnostics list
+	{ src = "https://github.com/onsails/lspkind.nvim" },   
+
 	{ src = "https://github.com/NickvanDyke/opencode.nvim" },
+  })
+
+require'treesitter-context'.setup{
+  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  multiwindow = false, -- Enable multiwindow support.
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+  line_numbers = true,
+  multiline_threshold = 20, -- Maximum number of lines to show for a single context
+  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+  -- Separator between context and content. Should be a single character string, like '-'.
+  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+  separator = nil,
+  zindex = 20, -- The Z-index of the context window
+  on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+}
+
+-- nvim-tree.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- neo-tree
+require("neo-tree").setup({
+  filesystem = {
+    window = {
+	  position = "right",
+      mappings = {
+        ["<leader>nt"] = "close_window",
+      },
+    },
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+      hide_gitignored = true,
+    },
+  },
 })
+
+vim.keymap.set('n', '<leader>nt', '<cmd>Neotree reveal toggle<CR>', {
+  desc = 'NeoTree reveal',
+  silent = true,
+})
+--
+-- showkeys 
+require("showkeys").setup({
+  timeout = 1,
+  maxkeys = 5,
+  position = "bottom-right"
+})
+
+-- vim.api.nvim_create_autocmd("UIEnter", {
+--   once = true,
+--   callback = function()
+--     vim.cmd("ShowkeysToggle")
+--   end,
+-- })
+--
 
 --mini.hipatterns
 local hipatterns = require('mini.hipatterns')
@@ -133,11 +205,12 @@ hipatterns.setup({
 require "mason".setup()
 
 -- snacks and open code
-require("snacks").setup({
-	input = {},
-	picker = {},
-})
-
+-- require("snacks").setup({
+-- 	input = {},
+-- 	picker = {},
+-- })
+--
+--
 vim.g.opencode_opts = {}
 vim.opt.autoread = true
 
@@ -164,9 +237,10 @@ require('telescope').setup{
 }
 
 local builtin = require 'telescope.builtin'
-map('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+map('n', '<leader>shh', builtin.help_tags, { desc = '[S]earch [H]elp' })
 map('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-map('n', '<leader>sf', ":Telescope find_files hidden=true<CR>", { desc = '[S]earch [F]iles' })
+map('n', '<leader>shf', ":Telescope find_files hidden=true<CR>", { desc = '[S]earch [H]idden [F]iles' })
+map('n', '<leader>sf', ":Telescope find_files<CR>", { desc = '[S]earch [F]iles' })
 map('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
 map('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
 map('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -212,41 +286,113 @@ vim.cmd(":hi statusline guibg=NONE")
 --map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 --map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
--- NERDTree
-map('n', '<leader>nt', ":NERDTreeToggle<CR>")
-map('n', '<leader>ns', ":NERDTreeFind<CR>")
-
 --lsp
-vim.lsp.enable({
-	"lua_ls",
-	"pyright",
-	"gopls"
-})
+local cmp = require('cmp')
+cmp.setup {
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
+}
 
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true)
-			}
-		}
-	}
-})
+-- List of servers to set up
+local servers = {
+  'lua_ls',
+  'pyright',
+  'gopls',
+  'clangd',
+  'dockerls',
+  'docker_compose_language_service',
+  'omnisharp',
+  'jdtls',
+  'html',
+  'cssls',
+  'tsserver',
+  'yamlls',
+  'bashls',
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if ok then
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+end
+
+for _, server in ipairs(servers) do
+  require('lspconfig')[server].setup({
+    capabilities = capabilities,
+  })
+end
 
 vim.api.nvim_create_autocmd('LspAttach', {
-	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-		end
-	end,
+  callback = function(ev)
+	vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = '[R]e[n]ame', buffer = ev.buf })
+	vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { desc = '[G]oto Code [A]ction', buffer = ev.buf })
+	vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences', buffer = ev.buf })
+	vim.keymap.set('n', 'gri', require('telescope.builtin').lsp_implementations, { desc = '[G]oto [I]mplementation', buffer = ev.buf })
+	vim.keymap.set('n', 'grd', require('telescope.builtin').lsp_definitions, { desc = '[G]oto [D]efinition', buffer = ev.buf })
+	vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration', buffer = ev.buf })
+	vim.keymap.set('n', 'grO', require('telescope.builtin').lsp_document_symbols, { desc = 'Open Document Symbols', buffer = ev.buf })
+	vim.keymap.set('n', 'grW', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Open Workspace Symbols', buffer = ev.buf })
+	vim.keymap.set('n', 'grt', require('telescope.builtin').lsp_type_definitions, { desc = '[G]oto [T]ype Definition', buffer = ev.buf })
+  end,
 })
 
 -- treesitter
-require 'nvim-treesitter.configs'.setup {
-	ensure_installed = { "go", "typescript", "javascript", "css", "python", "dockerfile", "java" },
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { 
+  -- Core programming
+    "c",
+    "cpp",
+    "c_sharp",
+    "go",
+    "python",
+    "java",
+    "lua",
+
+    -- Web dev
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "tsx",            -- React/TSX files
+    "json",
+    "yaml",
+
+    -- DevOps / config
+    "dockerfile",
+    "bash",
+    "toml",
+    "ini",
+
+    -- Documentation / text
+    "markdown",
+    "markdown_inline",
+    "vim",
+    "vimdoc",
+    "query",
+
+    -- SQL and data
+    "sql",
+    "csv"
+  },
+  sync_install = false,
+  auto_install = true,
+  -- List of parsers to ignore installing (or "all")
+  --ignore_install = { "javascript" },
+  highlight = {
+    enable = true,
+    --disable = { "c", "rust" },
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+	--
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
 }
