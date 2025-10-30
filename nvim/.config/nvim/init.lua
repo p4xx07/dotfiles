@@ -135,7 +135,7 @@ vim.pack.add({
 
 
 -- Auto-load all plugin files
-local plugin_dir = vim.fn.expand("~/dotfiles/nvim/.config/nvim/plugins")
+local plugin_dir = vim.fn.expand("~/.config/nvim/plugins")
 local success, files = pcall(vim.fn.readdir, plugin_dir)
 if success and files then
   for _, file in ipairs(files) do
@@ -149,3 +149,20 @@ if success and files then
   end
 end
 
+
+-- mini.hipatterns configuration
+local hipatterns = require('mini.hipatterns')
+hipatterns.setup({
+  highlighters = {
+    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE', 'WARN'
+    fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+    hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+    warn  = { pattern = '%f[%w]()WARN()%f[%W]',  group = 'MiniHipatternsHack'  },
+    todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+    note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+
+    -- Highlight hex color strings (`#rrggbb`) using that color
+	-- #000000 #FF0000 #00FF00 #0000FF #FFFFFF
+    hex_color = hipatterns.gen_highlighter.hex_color(),
+  },
+})
