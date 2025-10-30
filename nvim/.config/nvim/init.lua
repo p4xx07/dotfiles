@@ -112,6 +112,13 @@ vim.pack.add({
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- depends on mini, treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 
+	-- debug
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/mfussenegger/nvim-dap-python" },
+	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+
 	-- Completion engine
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
@@ -121,278 +128,24 @@ vim.pack.add({
 
 	-- (Optional) nice extras for quality of life
 	{ src = "https://github.com/folke/trouble.nvim" },     -- diagnostics list
-	{ src = "https://github.com/onsails/lspkind.nvim" },   
+	{ src = "https://github.com/onsails/lspkind.nvim" },
 
 	{ src = "https://github.com/NickvanDyke/opencode.nvim" },
   })
 
-require'treesitter-context'.setup{
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  multiwindow = false, -- Enable multiwindow support.
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-  line_numbers = true,
-  multiline_threshold = 20, -- Maximum number of lines to show for a single context
-  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
-  -- Separator between context and content. Should be a single character string, like '-'.
-  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-  separator = nil,
-  zindex = 20, -- The Z-index of the context window
-  on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-}
 
--- nvim-tree.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- neo-tree
-require("neo-tree").setup({
-  filesystem = {
-    window = {
-	  position = "right",
-      mappings = {
-        ["<leader>nt"] = "close_window",
-      },
-    },
-    filtered_items = {
-      visible = true,
-      hide_dotfiles = false,
-      hide_gitignored = true,
-    },
-  },
-})
-
-vim.keymap.set('n', '<leader>nt', '<cmd>Neotree reveal toggle<CR>', {
-  desc = 'NeoTree reveal',
-  silent = true,
-})
---
--- showkeys 
-require("showkeys").setup({
-  timeout = 1,
-  maxkeys = 5,
-  position = "bottom-right"
-})
-
--- vim.api.nvim_create_autocmd("UIEnter", {
---   once = true,
---   callback = function()
---     vim.cmd("ShowkeysToggle")
---   end,
--- })
---
-
---mini.hipatterns
-local hipatterns = require('mini.hipatterns')
-hipatterns.setup({
-  highlighters = {
-    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-    fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-    hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
-    todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
-    note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
-
-    -- Highlight hex color strings (`#rrggbb`) using that color
-    hex_color = hipatterns.gen_highlighter.hex_color(),
-	-- #FF0000
-	-- #00FF00
-	-- #0000FF
-  },
-})
-
--- oil
-require "mason".setup()
-
--- snacks and open code
--- require("snacks").setup({
--- 	input = {},
--- 	picker = {},
--- })
---
---
-vim.g.opencode_opts = {}
-vim.opt.autoread = true
-
-map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask about this" })
-map({ "n", "x" }, "<leader>o+", function() require("opencode").prompt("@this") end, { desc = "Add this" })
-map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Select prompt" })
-map("n", "<leader>ot", function() require("opencode").toggle() end, { desc = "Toggle embedded" })
-map("n", "<leader>on", function() require("opencode").command("session_new") end, { desc = "New session" })
-map("n", "<leader>oi", function() require("opencode").command("session_interrupt") end, { desc = "Interrupt session" })
-map("n", "<leader>oA", function() require("opencode").command("agent_cycle") end, { desc = "Cycle selected agent" })
-map("n", "<S-C-u>", function() require("opencode").command("messages_half_page_up") end, { desc = "Messages half page up" })
-map("n", "<S-C-d>", function() require("opencode").command("messages_half_page_down") end, { desc = "Messages half page down" })
-
--- telescope
---
-require('telescope').setup{
-  defaults = {
-    layout_config = {
-      width = 0.95,
-      height = 0.95,
-	  preview_width = 0.6,
-    },
-  },
-}
-
-local builtin = require 'telescope.builtin'
-map('n', '<leader>shh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-map('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-map('n', '<leader>shf', ":Telescope find_files hidden=true<CR>", { desc = '[S]earch [H]idden [F]iles' })
-map('n', '<leader>sf', ":Telescope find_files<CR>", { desc = '[S]earch [F]iles' })
-map('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-map('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-map('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-map('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-map('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-map('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-map('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-map('n', '<leader>st', ":TodoTelescope<CR>", { desc = '[S]earch [T]odos' })
-
---harpoon
-local harpoon = require "harpoon"
-harpoon.setup()
-map("n", "<leader>a", function() harpoon:list():add() end)
-map("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-map("n", "<C-h>", function() harpoon:list():select(1) end)
-map("n", "<C-t>", function() harpoon:list():select(2) end)
-map("n", "<C-n>", function() harpoon:list():select(3) end)
-map("n", "<C-s>", function() harpoon:list():select(4) end)
-
--- Toggle previous & next buffers stored within Harpoon list
-map("n", "<C-S-P>", function() harpoon:list():prev() end)
-map("n", "<C-S-N>", function() harpoon:list():next() end)
-
-
--- oil
-require "oil".setup()
-map('n', '<leader>oi', ":Oil<CR>")
-
--- centerpad
-map('n', '<leader>cp', ":Centerpad<CR>")
-
---colors
-require "vague".setup({transparent = true})
-vim.cmd("colorscheme vague")
-vim.cmd(":hi statusline guibg=NONE")
-
---snippets
---require "luasnip".setup({ enable_autosnippets = true })
---require "luasnip.loaders.from_lua".load({ paths = "~/.config/nvim/snippets/" })
-
--- local ls = require("luasnip")
---map({ "i" }, "<C-e>", function() ls.expand() end, { silent = true })
---map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
---map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
-
---lsp
-local cmp = require('cmp')
-cmp.setup {
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'path' },
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-}
-
--- List of servers to set up
-local servers = {
-  'lua_ls',
-  'pyright',
-  'gopls',
-  'clangd',
-  'dockerls',
-  'docker_compose_language_service',
-  'omnisharp',
-  'jdtls',
-  'html',
-  'cssls',
-  'tsserver',
-  'yamlls',
-  'bashls',
-}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if ok then
-  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+-- Auto-load all plugin files
+local plugin_dir = vim.fn.expand("~/dotfiles/nvim/.config/nvim/plugins")
+local success, files = pcall(vim.fn.readdir, plugin_dir)
+if success and files then
+  for _, file in ipairs(files) do
+    if file:match("%.lua$") then
+      local plugin_name = file:sub(1, -5)
+      local ok, err = pcall(require, "plugins." .. plugin_name)
+      if not ok then
+        vim.api.nvim_echo({{"Error loading " .. plugin_name .. ": " .. err, "Error"}}, true, {})
+      end
+    end
+  end
 end
 
-for _, server in ipairs(servers) do
-  require('lspconfig')[server].setup({
-    capabilities = capabilities,
-  })
-end
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(ev)
-	vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = '[R]e[n]ame', buffer = ev.buf })
-	vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { desc = '[G]oto Code [A]ction', buffer = ev.buf })
-	vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences', buffer = ev.buf })
-	vim.keymap.set('n', 'gri', require('telescope.builtin').lsp_implementations, { desc = '[G]oto [I]mplementation', buffer = ev.buf })
-	vim.keymap.set('n', 'grd', require('telescope.builtin').lsp_definitions, { desc = '[G]oto [D]efinition', buffer = ev.buf })
-	vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration', buffer = ev.buf })
-	vim.keymap.set('n', 'grO', require('telescope.builtin').lsp_document_symbols, { desc = 'Open Document Symbols', buffer = ev.buf })
-	vim.keymap.set('n', 'grW', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Open Workspace Symbols', buffer = ev.buf })
-	vim.keymap.set('n', 'grt', require('telescope.builtin').lsp_type_definitions, { desc = '[G]oto [T]ype Definition', buffer = ev.buf })
-  end,
-})
-
--- treesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { 
-  -- Core programming
-    "c",
-    "cpp",
-    "c_sharp",
-    "go",
-    "python",
-    "java",
-    "lua",
-
-    -- Web dev
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",            -- React/TSX files
-    "json",
-    "yaml",
-
-    -- DevOps / config
-    "dockerfile",
-    "bash",
-    "toml",
-    "ini",
-
-    -- Documentation / text
-    "markdown",
-    "markdown_inline",
-    "vim",
-    "vimdoc",
-    "query",
-
-    -- SQL and data
-    "sql",
-    "csv"
-  },
-  sync_install = false,
-  auto_install = true,
-  -- List of parsers to ignore installing (or "all")
-  --ignore_install = { "javascript" },
-  highlight = {
-    enable = true,
-    --disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-	--
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
