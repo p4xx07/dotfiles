@@ -1,6 +1,6 @@
 #zmodload zsh/zprof
 
-TERM=screen-256color 
+TERM=tmux-256color 
 setopt CORRECT
 
 export EDITOR='nvim'
