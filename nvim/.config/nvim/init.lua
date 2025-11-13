@@ -138,24 +138,19 @@ vim.pack.add({
   { src = "https://github.com/AckslD/nvim-neoclip.lua" },
   { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/karb94/neoscroll.nvim" },
+  { src = "https://github.com/kevinhwang91/nvim-bqf" },
 
   -- completely useless but cool
   -- TODO LEARN
   { src = "https://github.com/chentoast/marks.nvim" },
-  -- TODO LEARN
   { src = "https://github.com/AckslD/nvim-neoclip.lua" },
-  -- TODO LEARN
   { src = "https://github.com/nvim-mini/mini.surround" },
 
   -- not sure about these
-  { src = "https://github.com/abecodes/tabout.nvim" },
+  --{ src = "https://github.com/abecodes/tabout.nvim" },
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/sphamba/smear-cursor.nvim" },
   { src = "https://github.com/rachartier/tiny-glimmer.nvim" },
-
-
-  -- WARN FIXC THIS
-  -- { src = "https://github.com/kevinhwang91/nvim-bqf" },
 })
 
 

@@ -1,3 +1,5 @@
+vim.keymap.set('n', '<leader>sc', ':Telescope neoclip<CR>', {desc = "Telescope Neoclip"})
+
 require('neoclip').setup({
   history = 1000,
   enable_persistent_history = false,
