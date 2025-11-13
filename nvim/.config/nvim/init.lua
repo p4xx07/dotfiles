@@ -85,6 +85,11 @@ map({ 'n', 'v', 'x' }, '<leader>vs', ':rightbelow vs #<CR>')
 map('n', "''", "''zz")
 map('t', '', "")
 map('t', "<Esc>", "<C-\\><C-N>")
+map('n', "G", "Gzz")
+map('n', "<C-d>", "<C-d>zz")
+map('n', "<C-u>", "<C-u>zz")
+map('n', "{", "{zz")
+map('n', "}", "}zz")
 
 -- plugins
 vim.pack.add({
@@ -95,7 +100,9 @@ vim.pack.add({
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
 
   -- packages
+  --
   { src = "https://github.com/folke/zen-mode.nvim" },
+  { src = "https://github.com/christoomey/vim-tmux-navigator" },
   { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
   { src = "https://github.com/nvim-mini/mini.hipatterns" },
   { src = "https://github.com/vague2k/vague.nvim" },
@@ -128,7 +135,29 @@ vim.pack.add({
   -- (Optional) nice extras for quality of life
   { src = "https://github.com/folke/trouble.nvim" },
   { src = "https://github.com/onsails/lspkind.nvim" },
+  { src = "https://github.com/AckslD/nvim-neoclip.lua" },
+  { src = "https://github.com/chentoast/marks.nvim" },
+  { src = "https://github.com/karb94/neoscroll.nvim" },
+
+  -- completely useless but cool
+  -- TODO LEARN
+  { src = "https://github.com/chentoast/marks.nvim" },
+  -- TODO LEARN
+  { src = "https://github.com/AckslD/nvim-neoclip.lua" },
+  -- TODO LEARN
+  { src = "https://github.com/nvim-mini/mini.surround" },
+
+  -- not sure about these
+  { src = "https://github.com/abecodes/tabout.nvim" },
+  { src = "https://github.com/windwp/nvim-autopairs" },
+  { src = "https://github.com/sphamba/smear-cursor.nvim" },
+  { src = "https://github.com/rachartier/tiny-glimmer.nvim" },
+
+
+  -- WARN FIXC THIS
+  -- { src = "https://github.com/kevinhwang91/nvim-bqf" },
 })
+
 
 
 -- Auto-load all plugin files
