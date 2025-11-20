@@ -151,6 +151,7 @@ vim.pack.add({
   { src = "https://github.com/windwp/nvim-autopairs" },
   { src = "https://github.com/sphamba/smear-cursor.nvim" },
   { src = "https://github.com/rachartier/tiny-glimmer.nvim" },
+  { src = "https://github.com/pocco81/auto-save.nvim" },
 })
 
 

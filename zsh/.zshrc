@@ -42,6 +42,8 @@ source <(fzf --zsh)
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
+export PATH="$HOME/scripts:$PATH"
+
 # yazi cd on quit
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
