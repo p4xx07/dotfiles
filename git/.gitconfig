@@ -1,0 +1,14 @@
+[include]
+    path = ~/.gitconfig.local
+
+[pull]
+    ff = only
+
+[push]
+    default = current
+
+[fetch]
+    prune = true
+
+[core]
+    hooksPath = ~/.git_global_hooks

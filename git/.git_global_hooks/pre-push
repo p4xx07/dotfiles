@@ -1,0 +1,23 @@
+#!/bin/sh
+# Prevent force pushes
+
+if [ "$ALLOW_FORCE_PUSH" = "YES" ]; then
+  exit 0
+fi
+
+while read local_ref local_sha remote_ref remote_sha
+do
+    # If remote_sha is all zeros, it's a new branch, allow
+    if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+        continue
+    fi
+
+    # If local_sha is not a descendant of remote_sha, it's a force push
+    if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+        echo "Force push detected! Aborting."
+        exit 1
+    fi
+done
+
+exit 0
+
