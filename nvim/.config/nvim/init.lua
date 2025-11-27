@@ -139,6 +139,9 @@ vim.pack.add({
   { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/karb94/neoscroll.nvim" },
   { src = "https://github.com/kevinhwang91/nvim-bqf" },
+  { src = "https://github.com/j-hui/fidget.nvim" },
+  { src = "https://github.com/nvim-lualine/lualine.nvim" },
+
 
   -- completely useless but cool
   -- TODO LEARN
