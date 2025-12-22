@@ -1,3 +1,7 @@
+vim.cmd [[
+  syntax enable
+  filetype plugin indent on
+]]
 vim.cmd([[set mouse=a]])
 vim.cmd([[set noswapfile]])
 vim.cmd [[set completeopt+=menuone,noselect,noinsert,popup,preview]]
@@ -121,9 +125,10 @@ vim.pack.add({
   -- debug
   { src = "https://github.com/mfussenegger/nvim-dap" },
   { src = "https://github.com/mfussenegger/nvim-dap-python" },
+  { src = "https://github.com/leoluz/nvim-dap-go"},
   { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
-  { src = "https://github.com/nvim-neotest/nvim-nio" },
   { src = "https://github.com/rcarriga/nvim-dap-ui" },
+  { src = "https://github.com/nvim-neotest/nvim-nio" },
 
   -- Completion engin
   { src = "https://github.com/hrsh7th/nvim-cmp" },
@@ -142,7 +147,6 @@ vim.pack.add({
   { src = "https://github.com/j-hui/fidget.nvim" },
   { src = "https://github.com/nvim-lualine/lualine.nvim" },
 
-
   -- completely useless but cool
   -- TODO LEARN
   { src = "https://github.com/chentoast/marks.nvim" },
@@ -155,6 +159,12 @@ vim.pack.add({
   { src = "https://github.com/sphamba/smear-cursor.nvim" },
   { src = "https://github.com/rachartier/tiny-glimmer.nvim" },
   { src = "https://github.com/pocco81/auto-save.nvim" },
+
+  --golang
+  { src ="https://github.com/ray-x/go.nvim" },
+  { src ="https://github.com/ray-x/guihua.lua" },
+  { src ="https://github.com/sebdah/vim-delve" },
+  { src ="https://github.com/meain/vim-jsontogo" },
 })
 
 

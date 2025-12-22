@@ -8,6 +8,7 @@ require"nvim-treesitter.configs".setup {
     "python",
     "java",
     "lua",
+    "zig",
 
     -- Web dev
     "html",

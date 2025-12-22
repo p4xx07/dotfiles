@@ -19,6 +19,7 @@ local servers = {
   "ts_ls",
   "yamlls",
   "bashls",
+  "zls"
 }
 
 -- Setup LSP servers
@@ -58,3 +59,16 @@ cmp.setup {
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
 }
+
+
+require('lspconfig').gopls.setup({
+  on_attach = function(client, bufnr)
+    -- optional keymaps for LSP actions
+  end,
+  settings = {
+    gopls = {
+      analyses = { unusedparams = true },
+      staticcheck = true,
+    },
+  },
+})

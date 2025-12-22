@@ -43,6 +43,7 @@ source <(fzf --zsh)
 eval "$(atuin init zsh)"
 
 export PATH="$HOME/scripts:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
 
 # yazi cd on quit
 function yy() {

@@ -1,3 +1,7 @@
+vim.keymap.set("n", "<leader>as", function()
+  require("auto-save").toggle()
+end, { desc = "Toggle AutoSave" })
+
 require('auto-save').setup({
     enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
     execution_message = {
@@ -40,3 +44,4 @@ require('auto-save').setup({
 		after_saving = nil -- ran after doing the actual save
 	}
 })
+ 

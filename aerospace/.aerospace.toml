@@ -227,7 +227,11 @@ outer.right = 15
 
 [[on-window-detected]]
     if.app-id = 'company.thebrowser.Browser'
-    run = 'move-node-to-workspace B'
+    run = 'move-node-to-workspace A'
+
+[[on-window-detected]]
+	if.app-id = 'app.zen-browser.zen'
+	run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
     if.app-id = 'com.mitchellh.ghostty'
@@ -261,6 +265,7 @@ outer.right = 15
     Q = 'secondary' #Telegram
     V = 'secondary' #Teams
     F = 'secondary' #Firefox
+    A = 'secondary' #Arc
 
     P = 3      	    # Bling-Bling
 
