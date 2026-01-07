@@ -226,10 +226,6 @@ outer.right = 15
     run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
-    if.app-id = 'company.thebrowser.Browser'
-    run = 'move-node-to-workspace A'
-
-[[on-window-detected]]
 	if.app-id = 'app.zen-browser.zen'
 	run = 'move-node-to-workspace B'
 
@@ -253,9 +249,21 @@ outer.right = 15
 	if.app-id = 'com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep'
     run = 'move-node-to-workspace C'
 
+
+# Move browsers to F
+
 [[on-window-detected]]
 	if.app-id = 'org.mozilla.firefox'
     run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+	if.app-id = 'com.google.Chrome'
+    run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+    if.app-id = 'company.thebrowser.Browser'
+    run = 'move-node-to-workspace F'
+
 
 [workspace-to-monitor-force-assignment]
     T = 'main' 	    #Terminal
@@ -264,8 +272,7 @@ outer.right = 15
     W = 'secondary' #WhatsApp  
     Q = 'secondary' #Telegram
     V = 'secondary' #Teams
-    F = 'secondary' #Firefox
-    A = 'secondary' #Arc
+    F = 'secondary' #Firefox / other browsers
 
     P = 3      	    # Bling-Bling
 

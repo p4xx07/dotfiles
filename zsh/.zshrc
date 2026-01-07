@@ -1,4 +1,5 @@
 #zmodload zsh/zprof
+#START=$EPOCHREALTIMESTART
 
 TERM=tmux-256color 
 setopt CORRECT
@@ -30,20 +31,14 @@ alias re-source='source ~/.zshrc'
 
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
-
 export PATH="$HOME/scripts:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
+
+#. "$HOME/.atuin/bin/env"
+#eval "$(atuin init zsh)"
 
 # yazi cd on quit
 function yy() {
@@ -57,4 +52,4 @@ function yy() {
 }
 
 #zprof
-
+#print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"
