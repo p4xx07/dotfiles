@@ -1,4 +1,6 @@
 require('blink.cmp').setup({
+
+    signature = { enabled = true },
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
     -- 'super-tab' for mappings similar to vscode (tab to accept)
     -- 'enter' for enter to accept
@@ -35,3 +37,4 @@ require('blink.cmp').setup({
     -- See the fuzzy documentation for more information
     fuzzy = { implementation = "lua" }
 })
+

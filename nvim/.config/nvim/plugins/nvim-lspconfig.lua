@@ -1,9 +1,3 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if ok then
-  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-end
-
 -- List of servers to set up
 local servers = {
   "lua_ls",
@@ -21,6 +15,8 @@ local servers = {
   "bashls",
   "zls"
 }
+
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- Setup LSP servers
 for _, server in ipairs(servers) do
@@ -47,28 +43,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Setup mason
 require("mason").setup()
 
--- Setup nvim-cmp
-local cmp = require("cmp")
-cmp.setup {
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "path" },
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-  }),
-}
 
-
-require('lspconfig').gopls.setup({
-  on_attach = function(client, bufnr)
-    -- optional keymaps for LSP actions
-  end,
-  settings = {
-    gopls = {
-      analyses = { unusedparams = true },
-      staticcheck = true,
-    },
-  },
-})
