@@ -121,6 +121,7 @@ vim.pack.add({
   { src = "https://github.com/mason-org/mason.nvim" },
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- depends on mini, treesitter
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+  { src = "https://github.com/folke/flash.nvim"},
 
   -- debug
   { src = "https://github.com/mfussenegger/nvim-dap" },
