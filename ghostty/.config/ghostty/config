@@ -18,7 +18,7 @@ window-inherit-font-size = true
 window-inherit-working-directory = true
 
 
-keybind = global:ctrl+t=toggle_quick_terminal
+keybind = global:ctrl+shift+t=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-animation-duration = 0.1
 

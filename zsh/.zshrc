@@ -4,10 +4,8 @@
 TERM=tmux-256color 
 setopt CORRECT
 
-export EDITOR='nvim'
 alias vim='nvim'
 alias v='nvim'
-export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 
 bindkey -v
 # allow vv to edit the command line (standard behaviour)
@@ -35,8 +33,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
-export PATH="$HOME/scripts:$PATH"
-
 #. "$HOME/.atuin/bin/env"
 #eval "$(atuin init zsh)"
 
@@ -50,6 +46,15 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+export PATH="$(go env GOPATH)/bin:$PATH"
+export EDITOR='nvim'
+export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
+export PATH="$HOME/scripts:$PATH"
 
 #zprof
 #print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"

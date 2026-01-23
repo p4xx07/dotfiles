@@ -102,23 +102,23 @@ vim.pack.add({
   { src = "https://github.com/MunifTanjim/nui.nvim" },
   { src = "https://github.com/folke/snacks.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/rafamadriz/friendly-snippets" },
+  { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
 
   -- packages
   --
+  { src = "https://github.com/saghen/blink.cmp" },
   { src = "https://github.com/folke/zen-mode.nvim" },
   { src = "https://github.com/christoomey/vim-tmux-navigator" },
   { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
   { src = "https://github.com/nvim-mini/mini.hipatterns" },
   { src = "https://github.com/vague2k/vague.nvim" },
   { src = "https://github.com/stevearc/oil.nvim" },
-  { src = "https://github.com/ThePrimeagen/harpoon",                     version = "harpoon2" },
   { src = "https://github.com/nvim-telescope/telescope.nvim" },
   { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/mason-org/mason.nvim" },
-  { src = "https://github.com/nvzone/showkeys",                          cmd = "ShowkeysToggle" },
-  { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- depends on mini, treesitter
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 
@@ -139,25 +139,7 @@ vim.pack.add({
 
   -- (Optional) nice extras for quality of life
   { src = "https://github.com/folke/trouble.nvim" },
-  { src = "https://github.com/onsails/lspkind.nvim" },
-  { src = "https://github.com/AckslD/nvim-neoclip.lua" },
-  { src = "https://github.com/chentoast/marks.nvim" },
-  { src = "https://github.com/karb94/neoscroll.nvim" },
-  { src = "https://github.com/kevinhwang91/nvim-bqf" },
-  { src = "https://github.com/j-hui/fidget.nvim" },
   { src = "https://github.com/nvim-lualine/lualine.nvim" },
-
-  -- completely useless but cool
-  -- TODO LEARN
-  { src = "https://github.com/chentoast/marks.nvim" },
-  { src = "https://github.com/AckslD/nvim-neoclip.lua" },
-  { src = "https://github.com/nvim-mini/mini.surround" },
-
-  -- not sure about these
-  --{ src = "https://github.com/abecodes/tabout.nvim" },
-  { src = "https://github.com/windwp/nvim-autopairs" },
-  { src = "https://github.com/sphamba/smear-cursor.nvim" },
-  { src = "https://github.com/rachartier/tiny-glimmer.nvim" },
   { src = "https://github.com/pocco81/auto-save.nvim" },
 
   --golang

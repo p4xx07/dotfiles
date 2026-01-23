@@ -1,11 +1,3 @@
-# custom
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
-export PATH="$(go env GOPATH)/bin:$PATH"
-
-# already here
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Added by Toolbox App
