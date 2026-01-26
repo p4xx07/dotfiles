@@ -266,13 +266,13 @@ outer.right = 15
 
 
 [workspace-to-monitor-force-assignment]
-    T = 'main' 	    #Terminal
-    B = 'main' 	    #Browser
-    O = 'main' 	    #Outlook
-    W = 'secondary' #WhatsApp  
-    Q = 'secondary' #Telegram
-    V = 'secondary' #Teams
-    F = 'secondary' #Firefox / other browsers
+    T = 'main' 	    # Terminal
+    B = 'main' 	    # Browser
+    O = 'main' 	    # Outlook
+    W = 'secondary' # WhatsApp  
+    Q = 'secondary' # Telegram
+    V = 'secondary' # Teams
+    F = 'secondary' # Firefox / other browsers
 
-    P = 3      	    # Bling-Bling
+    P = 3      	    
 

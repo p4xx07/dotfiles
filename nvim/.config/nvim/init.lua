@@ -99,13 +99,11 @@ vim.pack.add({
 	-- dependencies
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/folke/snacks.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
 
 	-- packages
-	--
 	{ src = "https://github.com/saghen/blink.cmp" },
 	{ src = "https://github.com/folke/zen-mode.nvim" },
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
