@@ -16,11 +16,14 @@ hidden = false
 right = ["diagnostics", "selections", "position","position-percentage", "file-encoding"]
 
 [editor.lsp]
-auto-signature-help = false
+# auto-signature-help = true
 
 [keys.normal]
-C-space = "signature_help"
+# C-space = "signature_help"
 a = ["append_mode", "collapse_selection"]
+
+[keys.select]
+"A-," = "flip_selections"
 
 [keys.insert]
 C-s = ":w"

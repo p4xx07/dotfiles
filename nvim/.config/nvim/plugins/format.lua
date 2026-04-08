@@ -7,7 +7,7 @@ require("conform").setup({
 		javascriptreact = { "prettier" },
 		typescriptreact = { "prettier" },
 
-		json = { "prettier" },
+		--json = { "prettier" },
 		yaml = { "prettier" },
 		markdown = { "prettier" },
 
@@ -21,7 +21,6 @@ require("conform").setup({
 		css = { "prettier" },
 
 		dockerfile = { "dockfmt" },
-		yaml = { "prettier" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
