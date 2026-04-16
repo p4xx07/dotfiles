@@ -21,6 +21,7 @@ right = ["diagnostics", "selections", "position","position-percentage", "file-en
 [keys.normal]
 # C-space = "signature_help"
 a = ["append_mode", "collapse_selection"]
+"A-c" = "copy_selection_on_prev_line"
 
 [keys.select]
 "A-," = "flip_selections"

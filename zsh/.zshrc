@@ -4,9 +4,6 @@
 TERM=tmux-256color 
 setopt CORRECT
 
-alias vim='nvim'
-alias v='nvim'
-
 bindkey -v
 # allow vv to edit the command line (standard behaviour)
 autoload -Uz edit-command-line
@@ -26,6 +23,9 @@ alias lx='eza -lbhHigUmuSa@'
 alias lt='eza --tree $eza_params'
 alias tree='eza --tree $eza_params'
 alias re-source='source ~/.zshrc'
+
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
 
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
@@ -52,9 +52,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 export PATH="$(go env GOPATH)/bin:$PATH"
-export EDITOR='nvim'
+export EDITOR='hx'
 export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 export PATH="$HOME/scripts:$PATH"
 
 #zprof
 #print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"
+

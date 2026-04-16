@@ -32,4 +32,4 @@ keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = cmd+.=increase_font_size:1
 
-macos-option-as-alt = true
+macos-option-as-alt = left
