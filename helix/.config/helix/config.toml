@@ -21,7 +21,6 @@ right = ["diagnostics", "selections", "position","position-percentage", "file-en
 [keys.normal]
 # C-space = "signature_help"
 a = ["append_mode", "collapse_selection"]
-"A-c" = "copy_selection_on_prev_line"
 
 [keys.select]
 "A-," = "flip_selections"
@@ -35,3 +34,7 @@ C-space = "signature_help"
 w = ":update"
 e = ":bprev"
 q = ":quit"
+
+S-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+S-d = [":new", ":insert-output lazydocker", ":buffer-close!", ":redraw"]
+S-y = [":new", ":insert-output yazi", ":buffer-close!", ":redraw"]
