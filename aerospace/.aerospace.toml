@@ -243,7 +243,7 @@ outer.right = 15
     run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
-	if.app-id = 'com.google.Chrome'
+	if.app-id = 'com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbe'
     run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
