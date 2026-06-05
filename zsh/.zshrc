@@ -55,6 +55,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export EDITOR='hx'
 export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/flutter/bin:$PATH"
 
 #zprof
 #print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"

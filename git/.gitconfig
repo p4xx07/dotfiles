@@ -1,5 +1,5 @@
 [include]
-    path = ~/.gitconfig.local
+    # path = ~/.gitconfig.local
 
 [pull]
     ff = only
@@ -11,10 +11,13 @@
     prune = true
 
 [core]
-    hooksPath = ~/.git_global_hooks
+    # hooksPath = ~/.git_global_hooks
 	autocrlf = input
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[user]
+	name = Daniel Enrico BOTTA
+	email = 50495900+p4xx07@users.noreply.github.com

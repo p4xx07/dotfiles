@@ -15,19 +15,13 @@ hidden = false
 [editor.statusline]
 right = ["diagnostics", "selections", "position","position-percentage", "file-encoding"]
 
-[editor.lsp]
-# auto-signature-help = true
-
 [keys.normal]
-# C-space = "signature_help"
-a = ["append_mode", "collapse_selection"]
+esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.select]
 "A-," = "flip_selections"
 
 [keys.insert]
-C-s = ":w"
-C-q = "collapse_selection"
 C-space = "signature_help"
 
 [keys.normal.space]
