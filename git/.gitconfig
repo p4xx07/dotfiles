@@ -19,9 +19,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[user]
-	name = Daniel Enrico BOTTA
-	email = 50495900+p4xx07@users.noreply.github.com
+# [user] intentionally omitted: identity is machine-local.
+#   default  -> ~/.config/git/config  (untracked, work identity)
+#   personal -> per-repo: git config user.email 50495900+p4xx07@users.noreply.github.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
