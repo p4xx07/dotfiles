@@ -57,6 +57,8 @@ export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
 
+# personal aliases, not tracked by git
+[[ -f ~/.zsh_aliases.local ]] && source ~/.zsh_aliases.local
+
 #zprof
 #print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"
-

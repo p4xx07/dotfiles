@@ -250,7 +250,7 @@ outer.right = 15
     run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
-	if.app-id = 'com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbe'
+	if.app-id = 'com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep'
     run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
@@ -270,8 +270,17 @@ outer.right = 15
     run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
+    if.app-id = 'com.microsoft.Excel'
+    run = 'move-node-to-workspace X'
+
+[[on-window-detected]]
     if.app-id = 'org.jeffvli.feishin'
     run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+    if.app-id = 'com.openai.codex'
+    run = 'move-node-to-workspace Z'
+
 
 [workspace-to-monitor-force-assignment]
     T = 'main' 	    # Terminal

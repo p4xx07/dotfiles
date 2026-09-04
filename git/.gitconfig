@@ -13,6 +13,7 @@
 [core]
     # hooksPath = ~/.git_global_hooks
 	autocrlf = input
+	excludesfile = /Users/debotta/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -21,3 +22,11 @@
 [user]
 	name = Daniel Enrico BOTTA
 	email = 50495900+p4xx07@users.noreply.github.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/debotta/.stCommitMsg

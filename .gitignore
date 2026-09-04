@@ -8,3 +8,4 @@ tmux/.tmux/plugins
 nvim/.config/nvim/nvim-pack-lock.json
 git/.gitconfig.local
 zsh/nvim.log
+zsh/.zsh_aliases.local
