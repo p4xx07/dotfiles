@@ -62,3 +62,6 @@ export PATH="$HOME/flutter/bin:$PATH"
 
 #zprof
 #print "zshrc load: $(printf %.3f $(( EPOCHREALTIME - START )))s"
+
+# Hermes Agent command
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
